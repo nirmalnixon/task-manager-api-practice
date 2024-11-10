@@ -5,7 +5,10 @@ const userSchhema = new mongoose.Schema({
     lastName: { type: String, required: false },
     email: { type: String, required: true },
     address: { type: String, required: false },
-    mobile: { type: Number, required: true }
+    mobile: { type: Number, required: true },
+    password: { type: String, required: false },
+    role:{ type: Number, required: true },
+    refreshToken:{ type: String, required: false }
 })
 
 module.exports = mongoose.model('User', userSchhema);
