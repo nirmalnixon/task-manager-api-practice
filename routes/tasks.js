@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express.Router();
 const Task = require('../taskModel')
+const roleCheck = require('../roleCheck');
+
+app.use(roleCheck([0, 1, 2]));
 
 // 1. Get All Tasks
 app.get('/', async (req, res) => {

@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express.Router();
 const User = require('../userModel');
+const roleCheck = require('../roleCheck');
+
+app.use(roleCheck([0,1]));
 
 // 1. Get All Tasks
 app.get('/', async (req, res) => {
@@ -28,9 +31,9 @@ app.get('/:id', async (req, res) => {
 // 3. Create a New Task
 app.post('/', async (req, res) => {
     try {
-        const { firstName, lastName, email,address,mobile } = req.body;
+        const { firstName, lastName, email, address, mobile } = req.body;
 
-        const userTask = new User({ firstName, lastName, email,address,mobile });
+        const userTask = new User({ firstName, lastName, email, address, mobile });
 
         await userTask.save();
         res.status(201).json(userTask);
